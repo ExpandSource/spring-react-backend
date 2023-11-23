@@ -16,11 +16,25 @@ repositories {
 }
 
 dependencies {
+	
+	// 스프링 시큐리티 OAuth 리소스 서버 : JWT 발급
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+
+	// 스프링 시큐리티
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// JPA : 자바 영속성 API
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// database : h2, MySQL
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+
 }
 tasks.named('test') {
 	useJUnitPlatform()
