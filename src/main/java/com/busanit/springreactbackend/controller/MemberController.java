@@ -22,7 +22,7 @@ public class MemberController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/api/member")
-    public ResponseEntity register(MemberDto memberDto) {
+    public ResponseEntity register(@RequestBody MemberDto memberDto) {
         System.out.println(memberDto);
         Long id = memberService.register(memberDto, passwordEncoder);
         return ResponseEntity.ok(id);
