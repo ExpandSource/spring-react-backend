@@ -22,6 +22,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
@@ -37,7 +38,7 @@ public class SecurityConfig {
     private final MemberService memberService;
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception, IOException {
 
         // 요청 인가 설정
         http.authorizeHttpRequests((requests) -> requests
@@ -50,6 +51,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated());
 
         // 별도로 설정한 CORS 필터 사용
+        //http.cors(Customizer.withDefaults());
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         // HTTP 기본 인증 사용
